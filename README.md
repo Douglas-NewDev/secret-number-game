@@ -15,7 +15,7 @@
 
 ## 📜 How to Play
 
-1. Enter a number between 1 and 10 in the input field.
+1. Enter a number between 1 and 50 in the input field.
 2. Click **"Guess"** to submit your number.
 3. Get immediate feedback:
    - "The secret number is smaller" or "The secret number is larger."
