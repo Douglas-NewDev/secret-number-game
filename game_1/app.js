@@ -8,7 +8,7 @@ let attempts = 1;
 function displayTextOnScreen(tag, text) {
     let field = document.querySelector(tag);
     field.innerHTML = text;
-    responsiveVoice.speak(text, 'UK English Female', { rate: 1.0 });
+    responsiveVoice.speak(text, 'UK English Female', { rate: 1.1 });
 };
 
 // Function to show the initial message
