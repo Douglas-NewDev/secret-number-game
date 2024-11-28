@@ -1,73 +1,73 @@
-let listaDeNumerosSorteados = [];
-let numeroLimite = 10;
+let drawnNumbersList = [];
+let limitNumber = 100;
 
-let numeroSecreto = gerarNumeroAleatorio();
-let tentativas = 1;
+let secretNumber = generateRandomNumber();
+let attempts = 1;
 
-
-function exibirTextoNaTela(tag, texto){
-    let campo = document.querySelector(tag);
-    campo.innerHTML = texto;
-    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+// Function to display text on the screen
+function displayTextOnScreen(tag, text) {
+    let field = document.querySelector(tag);
+    field.innerHTML = text;
+    responsiveVoice.speak(text, 'UK English Female', { rate: 1.0 });
 };
 
-
-function exibirMensagemInicial(){
-    exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', 'escolha um número entre 1 e 10');
+// Function to show the initial message
+function showInitialMessage() {
+    displayTextOnScreen('h1', 'Secret Number Game');
+    displayTextOnScreen('p', 'Choose a number between 1 and 100');
 }
 
+showInitialMessage();
 
-exibirMensagemInicial();
+// Function to check the player's guess
+function checkGuess() {
+    let guess = document.querySelector('input').value;
 
-function verificarChute() {
-    let chute = document.querySelector('input').value;
-
-    if (chute == numeroSecreto) {
-        exibirTextoNaTela('h1', 'Você acertou!');
-        let palavraTentativa = tentativas > 1? 'tentativas' : 'tentativa';
-        let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}`;
-        exibirTextoNaTela('p', mensagemTentativas);
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    }else{
-        if (chute > numeroSecreto) {
-            exibirTextoNaTela('p', 'O número secreto é menor');
-        }else {
-            exibirTextoNaTela('p', 'O número secreto é maior');
+    if (guess == secretNumber) {
+        displayTextOnScreen('h1', 'You guessed it!');
+        let attemptWord = attempts > 1 ? 'attempts' : 'attempt';
+        let attemptsMessage = `You discovered the secret number in ${attempts} ${attemptWord}`;
+        displayTextOnScreen('p', attemptsMessage);
+        document.getElementById('restart').removeAttribute('disabled');
+    } else {
+        if (guess > secretNumber) {
+            displayTextOnScreen('p', 'The secret number is smaller');
+        } else {
+            displayTextOnScreen('p', 'The secret number is larger');
         }
-        tentativas++
-        limparCampo();
+        attempts++;
+        clearInputField();
     }
 };
 
-function gerarNumeroAleatorio(){
-    let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
-    let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
+// Function to generate a random number
+function generateRandomNumber() {
+    let chosenNumber = parseInt(Math.random() * limitNumber + 1);
+    let numberOfElementsInList = drawnNumbersList.length;
 
-    if(quantidadeDeElementosNaLista == numeroLimite) {
-        listaDeNumerosSorteados = []
+    if (numberOfElementsInList == limitNumber) {
+        drawnNumbersList = [];
     }
-    if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
-        return gerarNumeroAleatorio();
-    } else{
-        listaDeNumerosSorteados.push(numeroEscolhido);
-        console.log(listaDeNumerosSorteados)
-        return numeroEscolhido;
+    if (drawnNumbersList.includes(chosenNumber)) {
+        return generateRandomNumber();
+    } else {
+        drawnNumbersList.push(chosenNumber);
+        console.log(drawnNumbersList);
+        return chosenNumber;
     }
 }
 
-function limparCampo () {
-    chute = document.querySelector('input');
-    chute.value = ''
+// Function to clear the input field
+function clearInputField() {
+    let guessField = document.querySelector('input');
+    guessField.value = '';
 }
 
-function reiniciarJogo() {
-    numeroSecreto = gerarNumeroAleatorio();
-    limparCampo();
-    tentativas = 1;
-    exibirMensagemInicial();
-    document.getElementById('reiniciar').setAttribute('disabled', true)
+// Function to restart the game
+function restartGame() {
+    secretNumber = generateRandomNumber();
+    clearInputField();
+    attempts = 1;
+    showInitialMessage();
+    document.getElementById('restart').setAttribute('disabled', true);
 }
-
-
-

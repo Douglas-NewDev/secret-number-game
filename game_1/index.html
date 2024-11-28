@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,30 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>JS Game</title>
+    <title>Secret Number Game</title>
 </head>
 
 <body>
 
     <div class="container">
-        <div class="container__conteudo">
-            <div class="container__informacoes">
-                <div class="container__texto">
+        <div class="container__content">
+            <div class="container__info">
+                <div class="container__text">
                     <h1></h1>
-                    <p class="texto__paragrafo"></p>
+                    <p class="text__paragraph"></p>
                 </div>
                 <input type="number" min="1" max="10" class="container__input">
-                <div class="chute container__botoes">
-                    <button onclick="verificarChute()" class="container__botao">Chutar</button>
-                    <button onclick="reiniciarJogo()" id="reiniciar" class="container__botao" disabled>Novo jogo</button>
+                <div class="guess container__buttons">
+                    <button onclick="checkGuess()" class="container__button">Guess</button>
+                    <button onclick="restartGame()" id="restart" class="container__button" disabled>New Game</button>
                 </div>
             </div>
-            <img src="./img/ia.png" alt="Uma pessoa olhando para a esquerda" class="container__imagem-pessoa" />
+            <img src="./img/ia.png" alt="A person looking to the left" class="container__image-person" />
         </div>
     </div>
-
-
-
 
     <script src="app.js" defer></script>
 </body>
